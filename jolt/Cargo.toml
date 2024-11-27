@@ -6,11 +6,11 @@ edition = "2021"
 [workspace]
 members = [
     "sha2-chain-guest",
-    "sha3-chain-guest",
-    "sha2-guest",
-    "sha3-guest",
+    # "sha3-chain-guest",
+    # "sha2-guest",
+    # "sha3-guest",
     "fibonacci-guest",
-    "bigmem-guest",
+    # "bigmem-guest",
 ]
 
 [profile.release]
@@ -19,7 +19,7 @@ codegen-units = 1
 lto = "fat"
 
 [dependencies]
-jolt-sdk = { git = "https://github.com/a16z/Lasso", branch = "jolt", features = ["std"]}
+jolt = { package = "jolt-sdk", git = "https://github.com/a16z/jolt", features = ["host"] }
 utils = { path = "../utils" }
 
 sha2-chain-guest = { path = "./sha2-chain-guest" }

@@ -4,7 +4,7 @@ bench-all:
 	make bench-risczero
 
 bench-jolt:
-	cd jolt && RUSTFLAGS="-C target-cpu=native" cargo run --release
+	cd jolt && cargo run --release
 
 bench-sp1:
 	make build-sp1
