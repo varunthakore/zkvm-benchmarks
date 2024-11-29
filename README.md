@@ -23,6 +23,13 @@ Follow the instructions outputted by this command then run:
 sp1up
 ```
 
+### Install stone-cli
+```bash
+git clone git@github.com:zksecurity/stone-cli.git
+cd stone-cli
+cargo install --path .
+```
+
 ## Running
 To run all benchmarks run:
 ```bash

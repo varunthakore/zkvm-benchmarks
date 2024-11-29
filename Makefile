@@ -26,3 +26,5 @@ bench-risczero:
 	# cd risczero/sha3 && cargo run --release
 	# cd risczero/bigmem && cargo run --release
 
+bench-stone:
+	cd stone && cargo run --release
