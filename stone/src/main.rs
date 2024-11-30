@@ -55,7 +55,7 @@ fn benchmark_fib(_n: u32) -> (Duration, usize) {
     }
 
     // Proof Size
-    let file_path = "proof.json";
+    let file_path = "fibonacci_proof.json";
 
     let file_content = fs::read_to_string(file_path)
         .expect("Failed to read the JSON file");
