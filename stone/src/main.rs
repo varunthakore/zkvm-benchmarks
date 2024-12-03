@@ -7,24 +7,31 @@ use std::fs;
 
 fn main() {
     // fibonacci
+    // let ns = [100, 1000, 10000, 50000];
     let ns = [50];
     benchmark(
         benchmark_fib,
         &ns,
-        "../benchmark_outputs/fiboancci_stone.csv",
+        "../benchmark_outputs/fibonacci_stone.csv",
         "n",
     );
 }
 
-fn benchmark_fib(_n: u32) -> (Duration, usize) {
+fn benchmark_fib(n: u32) -> (Duration, usize) {
+
     // Prove
     let command = "stone-cli";
+    let program_path = "programs/fibonacci.cairo".to_string();
+    let program_input = format!("[1 {}]", n).to_string();
+    let output_file = format!("fibonacci_{}_proof.json", n).to_string();
     let args = [
         "prove",
         "--cairo_program",
-        "programs/fibonacci.cairo",
+        &program_path,
+        "--program_input",
+        &program_input,
         "--output",
-        "fibonacci_proof.json",
+        &output_file,
         "--stone_version",
         "v6",
     ];
@@ -55,7 +62,7 @@ fn benchmark_fib(_n: u32) -> (Duration, usize) {
     }
 
     // Proof Size
-    let file_path = "fibonacci_proof.json";
+    let file_path = &output_file;
 
     let file_content = fs::read_to_string(file_path)
         .expect("Failed to read the JSON file");
@@ -75,7 +82,7 @@ fn benchmark_fib(_n: u32) -> (Duration, usize) {
     let verify_args = [
         "verify",
         "--proof",
-        "fibonacci_proof.json",
+        &output_file,
     ];
 
     println!("Running Verify command: {} {}", verify_command, verify_args.join(" "));
