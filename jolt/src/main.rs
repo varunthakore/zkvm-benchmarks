@@ -17,7 +17,7 @@ pub fn main() {
 
     // let ns = [100, 1000, 10000, 50000];
     let ns = [50];
-    benchmark(benchmark_fib, &ns, "../benchmark_outputs/fiboancci_jolt.csv", "n");
+    benchmark(benchmark_fib, &ns, "../benchmark_outputs/fibonacci_jolt.csv", "n");
 
     // let values = [5];
     // benchmark(benchmark_bigmem, &values, "../benchmark_outputs/bigmem_jolt.csv", "value");
