@@ -6,11 +6,11 @@ edition = "2021"
 [workspace]
 members = [
     "sha2-chain-guest",
-    # "sha3-chain-guest",
-    # "sha2-guest",
-    # "sha3-guest",
+    "sha3-chain-guest",
+    "sha2-guest",
+    "sha3-guest",
     "fibonacci-guest",
-    # "bigmem-guest",
+    "bigmem-guest",
 ]
 
 [profile.release]
