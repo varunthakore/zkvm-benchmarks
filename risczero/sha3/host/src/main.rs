@@ -1,7 +1,7 @@
 use std::time::Duration;
 
 use methods::{SHA3_BENCH_ELF, SHA3_BENCH_ID};
-use risc0_zkvm::{ExecutorEnv, LocalProver, Prover};
+use risc0_zkvm::{default_prover, ExecutorEnv};
 use utils::{benchmark, size};
 
 fn main() {
@@ -12,10 +12,10 @@ fn main() {
 fn bench_sha3(num_bytes: usize) -> (Duration, usize) {
     let input = vec![5u8; num_bytes];
     let env = ExecutorEnv::builder().write(&input).unwrap().build().unwrap();
-    let prover = LocalProver::new("prover");
+    let prover = default_prover();
 
     let start = std::time::Instant::now();
-    let receipt = prover.prove(env, SHA3_BENCH_ELF).unwrap();
+    let receipt = prover.prove(env, SHA3_BENCH_ELF).unwrap().receipt;
     let end = std::time::Instant::now();
     let duration = end.duration_since(start);
 

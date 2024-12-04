@@ -3,7 +3,7 @@ use std::time::Duration;
 use methods::{
     FIBONACCI_ELF, FIBONACCI_ID
 };
-use risc0_zkvm::{LocalProver, ExecutorEnv, Prover};
+use risc0_zkvm::{default_prover, ExecutorEnv};
 use utils::{benchmark, size};
 
 fn main() {
@@ -14,7 +14,7 @@ fn main() {
 
 fn bench_fibonacci(n: u32) -> (Duration, usize) {
     let env = ExecutorEnv::builder().write::<u32>(&n).unwrap().build().unwrap();
-    let prover = LocalProver::new("prover");
+    let prover = default_prover();
 
     let start = std::time::Instant::now();
     let receipt = prover.prove(env, FIBONACCI_ELF).unwrap().receipt;

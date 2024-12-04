@@ -3,7 +3,7 @@ use std::time::Duration;
 use methods::{
     BIGMEM_ELF, BIGMEM_ID
 };
-use risc0_zkvm::{LocalProver, ExecutorEnv, Prover};
+use risc0_zkvm::{default_prover, ExecutorEnv};
 use utils::{benchmark, size};
 
 fn main() {
@@ -13,10 +13,10 @@ fn main() {
 
 fn bench_bigmem(n: u32) -> (Duration, usize) {
     let env = ExecutorEnv::builder().write::<u32>(&n).unwrap().build().unwrap();
-    let prover = LocalProver::new("prover");
+    let prover = default_prover();
 
     let start = std::time::Instant::now();
-    let receipt = prover.prove(env, BIGMEM_ELF).unwrap();
+    let receipt = prover.prove(env, BIGMEM_ELF).unwrap().receipt;
     let end = std::time::Instant::now();
     let duration = end.duration_since(start);
 
