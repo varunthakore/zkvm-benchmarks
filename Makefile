@@ -2,6 +2,7 @@ bench-all:
 	make bench-jolt
 	make bench-sp1
 	make bench-risczero
+	make bench-stone
 
 bench-jolt:
 	cd jolt && cargo run --release
